@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>v1</activeVersionIdentifier>
+    <description>Classifies a Medical Insight into a semantic intent + fine-grained sub-topics so similar insights can be matched on shared intent and specific themes, not only subject tags.</description>
+    <developerName>Medical_Insight_Intent_Classification</developerName>
+    <masterLabel>Medical Insight Intent Classification</masterLabel>
+    <relatedEntity>MedicalInsight</relatedEntity>
+    <type>flex</type>
+    <templateVersions>
+        <content>You are classifying a Medical Insight logged by a pharmaceutical field rep so that semantically similar insights can be grouped together.
+
+Insight title: {!$Input:InsightTitle}
+Insight content: {!$Input:InsightContent}
+Assigned subjects: {!$Input:Subjects}
+
+Step 1: Choose exactly ONE intent from this taxonomy:
+- Trial Access Barrier
+- Patient Education Gap
+- Off-Label Information Request
+- Safety Signal
+- Efficacy Question
+- Dosing or Administration
+- Reimbursement or Access
+- Competitive or Comparative
+- Guideline or Protocol
+- Other
+
+Step 2: Identify 2-4 fine-grained sub-topics that describe what this insight is SPECIFICALLY about within the chosen intent. Use lowercase-hyphen style (e.g., "site-availability", "geographic-access"). Be specific. Generic tags like "general-question" are not useful. Pick sub-topics that would let you group this insight with other insights making the same specific point — not every insight in the same intent.
+
+Good examples of sub-topics:
+- Trial Access Barrier: site-availability, geographic-access, eligibility-criteria, enrollment-logistics, trial-financial
+- Patient Education Gap: language-access, consent-literacy, caregiver-materials, side-effect-education, disease-state-education
+- Safety Signal: hematologic-toxicity, infusion-reaction, dermatologic, gi-toxicity, organ-toxicity, discontinuation
+- Reimbursement or Access: prior-authorization, copay-assistance, payer-denial, medicare-medicaid
+- Dosing or Administration: dose-modification, administration-route, dosing-schedule, renal-hepatic-adjustment
+
+Step 3: Provide a confidence between 0 and 1 and a one-sentence rationale.
+
+Return ONLY a JSON object with this exact shape and nothing else:
+{"intent": "&lt;one value from the taxonomy&gt;", "subtopics": ["&lt;tag&gt;","&lt;tag&gt;"], "confidence": &lt;number 0-1&gt;, "rationale": "&lt;one sentence&gt;"}</content>
+        <inputs>
+            <apiName>InsightTitle</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Insight Title</masterLabel>
+            <referenceName>Input:InsightTitle</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>InsightContent</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Insight Content</masterLabel>
+            <referenceName>Input:InsightContent</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Subjects</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Assigned Subjects</masterLabel>
+            <referenceName>Input:Subjects</referenceName>
+            <required>false</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>v1</versionIdentifier>
+    </templateVersions>
+    <type>flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

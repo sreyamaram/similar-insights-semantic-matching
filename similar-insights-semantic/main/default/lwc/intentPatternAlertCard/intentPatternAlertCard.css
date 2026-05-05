@@ -1,0 +1,139 @@
+.alerts-container {
+    padding: 0.5rem;
+}
+
+.alerts-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.alerts-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #181818;
+}
+
+.alert-card {
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-left: 4px solid #0176D3;
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.alert-card.hot {
+    border-left: 4px solid #EA001E;
+    background: linear-gradient(90deg, #FFF5F5 0%, #FFFFFF 40%);
+}
+
+.bucket-row {
+    background: #0176D3;
+    color: #fff;
+    padding: 0.2rem 0.55rem;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: monospace;
+}
+
+.alert-card.hot .bucket-row {
+    background: #EA001E;
+}
+
+.bucket-label {
+    letter-spacing: 0.02em;
+}
+
+.alert-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #181818;
+    margin-top: 0.55rem;
+    line-height: 1.25;
+}
+
+.alert-preview {
+    font-size: 12px;
+    color: #606060;
+    margin-top: 0.25rem;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+.metric-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 0.65rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid #F0F0F0;
+}
+
+.metric {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+}
+
+.metric-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0176D3;
+}
+
+.alert-card.hot .metric-num {
+    color: #EA001E;
+}
+
+.metric-lbl {
+    font-size: 11px;
+    color: #606060;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.metric-trending {
+    margin-left: auto;
+}
+
+.trending-text {
+    font-size: 11px;
+    color: #3E3E3C;
+    font-weight: 500;
+}
+
+.alert-actions {
+    margin-top: 0.65rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.primary-btn {
+    background: #0176D3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.35rem 0.75rem;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #014486;
+}
+
+.text-btn {
+    background: transparent;
+    color: #706E6B;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.text-btn:hover {
+    color: #181818;
+}

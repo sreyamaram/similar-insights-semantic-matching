@@ -1,0 +1,59 @@
+<template>
+    <template lwc:if={isLoading}>
+        <div class="slds-is-relative" style="min-height: 60px;">
+            <lightning-spinner alternative-text="Loading alerts..." size="small"></lightning-spinner>
+        </div>
+    </template>
+
+    <template lwc:if={hasAlerts}>
+        <div class="alerts-container">
+            <div class="alerts-header">
+                <lightning-icon icon-name="utility:einstein" size="small" variant="brand"></lightning-icon>
+                <h2 class="alerts-title slds-m-left_x-small">Pattern Alerts ({alertCount})</h2>
+            </div>
+
+            <template for:each={processedAlerts} for:item="alert">
+                <article key={alert.insightId} class={alert.variantClass}>
+                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-start">
+                        <div class="slds-grid slds-grid_vertical-align-center bucket-row">
+                            <lightning-icon icon-name={alert.iconName} size="x-small" variant="inverse"></lightning-icon>
+                            <span class="bucket-label slds-m-left_xx-small">{alert.bucketLabel}</span>
+                        </div>
+                    </div>
+
+                    <h3 class="alert-title">{alert.insightName}</h3>
+                    <p class="alert-preview">{alert.insightPreview}</p>
+
+                    <div class="metric-row">
+                        <div class="metric">
+                            <span class="metric-num">{alert.totalCount}</span>
+                            <span class="metric-lbl">insights</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-num">{alert.mslCount}</span>
+                            <span class="metric-lbl">MSLs</span>
+                        </div>
+                        <div class="metric metric-trending">
+                            <span class="trending-text">{alert.trendingLabel}</span>
+                        </div>
+                    </div>
+
+                    <div class="alert-actions">
+                        <button class="primary-btn" onclick={handleViewInsights} data-index={alert.index}>
+                            View Similar Insights
+                        </button>
+                        <button class="text-btn" onclick={handleDismiss} data-index={alert.index}>
+                            Dismiss
+                        </button>
+                    </div>
+                </article>
+            </template>
+        </div>
+    </template>
+
+    <template lwc:if={error}>
+        <div class="slds-text-color_weak slds-text-align_center slds-p-around_small">
+            Pattern alerts temporarily unavailable
+        </div>
+    </template>
+</template>

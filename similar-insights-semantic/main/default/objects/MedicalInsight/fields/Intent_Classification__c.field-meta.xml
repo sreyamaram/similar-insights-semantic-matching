@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intent_Classification__c</fullName>
+    <description>Semantic intent category produced by the Similar Insights: Semantic Matching classifier. Used to match insights on what the HCP is asking rather than only on assigned subjects.</description>
+    <label>Intent Classification</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Trial Access Barrier</fullName>
+                <default>false</default>
+                <label>Trial Access Barrier</label>
+            </value>
+            <value>
+                <fullName>Patient Education Gap</fullName>
+                <default>false</default>
+                <label>Patient Education Gap</label>
+            </value>
+            <value>
+                <fullName>Off-Label Information Request</fullName>
+                <default>false</default>
+                <label>Off-Label Information Request</label>
+            </value>
+            <value>
+                <fullName>Safety Signal</fullName>
+                <default>false</default>
+                <label>Safety Signal</label>
+            </value>
+            <value>
+                <fullName>Efficacy Question</fullName>
+                <default>false</default>
+                <label>Efficacy Question</label>
+            </value>
+            <value>
+                <fullName>Dosing or Administration</fullName>
+                <default>false</default>
+                <label>Dosing or Administration</label>
+            </value>
+            <value>
+                <fullName>Reimbursement or Access</fullName>
+                <default>false</default>
+                <label>Reimbursement or Access</label>
+            </value>
+            <value>
+                <fullName>Competitive or Comparative</fullName>
+                <default>false</default>
+                <label>Competitive or Comparative</label>
+            </value>
+            <value>
+                <fullName>Guideline or Protocol</fullName>
+                <default>false</default>
+                <label>Guideline or Protocol</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

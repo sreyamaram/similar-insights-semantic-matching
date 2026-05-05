@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intent_Rationale__c</fullName>
+    <description>One-sentence explanation of why the classifier chose this intent. Shown to users to build trust in semantic matches.</description>
+    <label>Intent Rationale</label>
+    <length>500</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

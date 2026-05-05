@@ -1,0 +1,106 @@
+.semantic-card {
+    border-left: 4px solid #0176D3;
+}
+
+.intent-header {
+    background: linear-gradient(90deg, #EEF4FF 0%, #F8FBFF 100%);
+    border-radius: 4px;
+}
+
+.match-count {
+    font-weight: 700;
+    color: #0176D3;
+    line-height: 1;
+}
+
+.current-intent-badge {
+    --slds-c-badge-color-background: #0176D3;
+    --slds-c-badge-text-color: #fff;
+}
+
+.rationale-text {
+    max-width: 420px;
+    color: #3E3E3C;
+    font-style: italic;
+}
+
+.summary-section {
+    background: #FAFAFB;
+    border-radius: 4px;
+    margin: 0 1rem;
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    background: #EEF4FF;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.tag-count {
+    margin-left: 0.5rem;
+    padding: 0 0.4rem;
+    background: #0176D3;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.insight-tile {
+    transition: box-shadow 0.15s ease;
+}
+
+.insight-tile:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.insight-content {
+    color: #3E3E3C;
+}
+
+.match-rationale {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.subtopic-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.subtopic-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.5rem;
+    background: #FFF;
+    border: 1px solid #0176D3;
+    color: #0176D3;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: monospace;
+}
+
+.subtopic-chip-sm {
+    font-size: 10px;
+    padding: 0.1rem 0.4rem;
+}
+
+.match-score-badge {
+    background: #0176D3;
+    color: #fff;
+    padding: 0.1rem 0.5rem;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+}

@@ -1,0 +1,111 @@
+<template>
+    <lightning-card class="semantic-card">
+        <div slot="title" class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center card-title">
+            <div class="slds-grid slds-grid_vertical-align-center">
+                <lightning-icon icon-name="utility:einstein" size="small" variant="brand"></lightning-icon>
+                <span class="slds-m-left_small slds-text-heading_small">Semantic Pattern Analysis</span>
+            </div>
+            <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh" onclick={handleRefresh} variant="bare"></lightning-button-icon>
+        </div>
+
+        <template lwc:if={isLoading}>
+            <div class="slds-p-around_medium slds-text-align_center">
+                <lightning-spinner alternative-text="Analyzing..." size="small"></lightning-spinner>
+                <p class="slds-m-top_small slds-text-color_weak">Classifying intent and finding semantic matches...</p>
+            </div>
+        </template>
+
+        <template lwc:if={error}>
+            <div class="slds-p-around_medium">
+                <div class="slds-notify slds-notify_alert slds-alert_error">
+                    <h2>{error}</h2>
+                </div>
+            </div>
+        </template>
+
+        <template lwc:if={hasResults}>
+            <div class="slds-p-around_medium intent-header">
+                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                    <div>
+                        <p class="slds-text-body_small slds-text-color_weak">This insight's intent</p>
+                        <div class="slds-grid slds-grid_vertical-align-center slds-m-top_xx-small">
+                            <lightning-badge label={currentIntent} class="current-intent-badge"></lightning-badge>
+                            <span class="slds-m-left_small slds-text-body_small slds-text-color_weak">confidence {currentConfidencePct}</span>
+                        </div>
+                        <template lwc:if={currentSubtopics.length}>
+                            <div class="slds-m-top_x-small subtopic-row">
+                                <template for:each={currentSubtopics} for:item="st">
+                                    <span key={st} class="subtopic-chip">{st}</span>
+                                </template>
+                            </div>
+                        </template>
+                        <p class="slds-m-top_x-small slds-text-body_small rationale-text">{currentRationale}</p>
+                    </div>
+                    <div class="slds-text-align_right">
+                        <p class="slds-text-heading_large match-count">{result.totalCount}</p>
+                        <p class="slds-text-body_small slds-text-color_weak">tight matches</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-p-around_medium summary-section">
+                <h3 class="slds-text-heading_small slds-m-bottom_x-small">Pattern Summary</h3>
+                <p class="slds-text-body_regular">{patternSummary}</p>
+            </div>
+
+            <div class="slds-p-around_medium">
+                <h3 class="slds-text-heading_small slds-m-bottom_small">Top Sub-topics in Matches</h3>
+                <div class="tag-container">
+                    <template for:each={intentBreakdown} for:item="i">
+                        <div key={i.intent} class="tag-badge">
+                            <span class="tag-name">{i.intent}</span>
+                            <span class="tag-count">{i.count}</span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+                <h3 class="slds-text-heading_small slds-m-bottom_small">Similar Insights ({result.totalCount})</h3>
+                <template for:each={similarInsights} for:item="insight">
+                    <article key={insight.insightId} class="slds-box slds-box_x-small slds-m-bottom_x-small insight-tile">
+                        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                            <h3 class="slds-truncate">
+                                <a href={insight.recordUrl} onclick={handleNavigate} data-id={insight.insightId}>
+                                    {insight.insightName}
+                                </a>
+                            </h3>
+                            <span class="match-score-badge">{insight.scoreLabel}</span>
+                        </div>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                            {insight.ownerName} ·
+                            <lightning-formatted-date-time value={insight.createdDate}
+                                year="numeric" month="short" day="numeric">
+                            </lightning-formatted-date-time>
+                        </p>
+                        <template lwc:if={insight.subtopicList.length}>
+                            <div class="slds-m-top_xx-small subtopic-row">
+                                <template for:each={insight.subtopicList} for:item="st">
+                                    <span key={st} class="subtopic-chip subtopic-chip-sm">{st}</span>
+                                </template>
+                            </div>
+                        </template>
+                        <p class="slds-text-body_small slds-m-top_x-small insight-content">{insight.content}</p>
+                        <p class="slds-text-body_small slds-text-color_success slds-m-top_x-small match-rationale">
+                            <lightning-icon icon-name="utility:connected_apps" size="xx-small"></lightning-icon>
+                            <span class="slds-m-left_xx-small">{insight.rationale}</span>
+                        </p>
+                    </article>
+                </template>
+            </div>
+        </template>
+
+        <template lwc:if={noResults}>
+            <div class="slds-p-around_medium">
+                <div class="slds-notify slds-notify_alert slds-alert_warning">
+                    <h2>{message}</h2>
+                </div>
+            </div>
+        </template>
+    </lightning-card>
+</template>

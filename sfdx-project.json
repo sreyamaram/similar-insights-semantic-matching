@@ -1,0 +1,16 @@
+{
+  "packageDirectories": [
+    {
+      "path": "similar-insights-semantic",
+      "default": true,
+      "package": "Similar Insights Semantic Matching",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT"
+    }
+  ],
+  "name": "similar-insights-semantic-matching",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "63.0",
+  "packageAliases": {}
+}
